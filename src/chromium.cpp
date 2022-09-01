@@ -1,8 +1,25 @@
-//
-// Created by maros on 01/09/2022.
-//
+/*
+   Copyright (C) 2000-2001 Dawit Alemayehu <adawit@kde.org>
+   Copyright (C) 2006 Alexey Proskuryakov <ap@webkit.org>
+   Copyright (C) 2007, 2008 Apple Inc. All rights reserved.
+   Copyright (C) 2010 Patrick Gansterer <paroga@paroga.com>
+   Copyright (C) 2022 Maroš Prejsa (rgnter) <maros.prejsa1@gmail.com>
 
-#include <edupage.hpp>
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU Lesser General Public License (LGPL)
+   version 2 as published by the Free Software Foundation.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   You should have received a copy of the GNU Library General Public
+   License along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+   This code is based on the java implementation in HTTPClient
+   package by Ronald Tschalaer Copyright (C) 1996-1999.
+*/
+
+#include <epea.hpp>
 #include <string>
 #include <vector>
 #include <limits.h>
@@ -36,7 +53,7 @@ constexpr char base64DecMap[128] = {
         0x31, 0x32, 0x33, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-void eplib::chromium::base64Encode(const char* data, unsigned len, std::string& result) {
+void epea::chromium::base64Encode(const char* data, unsigned len, std::string& result) {
     result.clear();
     if (!len)
         return;
@@ -87,7 +104,7 @@ void eplib::chromium::base64Encode(const char* data, unsigned len, std::string& 
     }
 }
 
-bool eplib::chromium::base64Decode(const char *data, unsigned int len, std::string &out) {
+bool epea::chromium::base64Decode(const char *data, unsigned int len, std::string &out) {
     out.clear();
     if (!len)
         return false;
