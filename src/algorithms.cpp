@@ -83,16 +83,34 @@ data_s compress(const std::string &data) {
     return data_s{compressed, stream.total_out};
 }
 
+
+
 std::string epea::encode(const std::string &payload) {
     auto compressed = compress(payload);
     auto data = compressed.data.get();
 
-    std::string stringified;
-    chromium::base64Encode((char*) data, compressed.length, stringified);
+    std::string encoded;
+    chromium::base64Encode((char*) data, compressed.length, encoded);
 
-    return std::string("dz:").append(stringified);
+    return std::string(PAYLOAD_PREFIX).append(encoded);
 }
 
+/**
+ * Decompress data.
+ * @param data Data to decompress.
+ * @return Struct containing pointer to decompressed buffer and it's length.
+ */
+data_s decompress(const std::vector<char> &data) {
+
+}
+
+
 std::string epea::decode(const std::string &payload) {
+    std::vector<char> decoded;
+    if(payload.starts_with(PAYLOAD_PREFIX))
+        throw std::logic_error("Payload must start with payload prefix.");
+    chromium::base64Decode(payload.substr(PAYLOAD_PREFIX.length()), decoded);
+
+
     return "";
 }

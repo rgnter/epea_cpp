@@ -27,14 +27,20 @@
 #define EDUPAGE_EPEA_HPP
 
 #include <string>
+#include <vector>
 #include <string_view>
 
 namespace epea
 {
 
     /**
+     * Prefix with which payloads are prepended.
+     */
+    constexpr const std::string_view PAYLOAD_PREFIX = "dz:";
+
+    /**
      * Encode payload.<br>
-     * Payload is compressed and encoded to base64 and then it's prepended with "<code>dz:</code>".
+     * Payload is compressed and encoded to base64 and then it's prepended with payload prefix.
      * @param payload Payload.
      * @return Encoded payload.
      */
@@ -61,11 +67,11 @@ namespace epea
         /**
          * Decodes base64 to ascii
          * @param data Data
-         * @param len  Data length
          * @param out  Buffer
+         * @param len  Buffer length
          * @return Boolean
          */
-        bool base64Decode(const char* data, unsigned len, std::string& out);
+        bool base64Decode(const std::string& data, std::vector<char>& out);
 
     }
 }

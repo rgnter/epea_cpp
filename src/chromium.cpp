@@ -104,10 +104,11 @@ void epea::chromium::base64Encode(const char* data, unsigned len, std::string& r
     }
 }
 
-bool epea::chromium::base64Decode(const char *data, unsigned int len, std::string &out) {
+
+
+bool epea::chromium::base64Decode(const std::string &data, std::vector<char>& out) {
     out.clear();
-    if (!len)
-        return false;
+    unsigned len = data.length();
     out.resize(len);
     unsigned equalsSignCount = 0;
     unsigned outLength = 0;
